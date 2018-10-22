@@ -1,0 +1,11 @@
+version: '2'
+services:
+  bettor-league-landing:
+    container_name: bettor-league-landing
+    image: nadjim/bettor-league-landing
+    ports:
+    - "8060:80"
+networks:
+  default:
+    external:
+      name: bettor-league-network
