@@ -2,10 +2,18 @@ version: '2'
 services:
   bettor-league-landing:
     container_name: bettor-league-landing
-    image: nadjim/bettor-league-landing
+    build: .
     ports:
-    - "8060:80"
+      - "8060:80"
+    networks:
+      - bettor-league-network
+    labels:
+      - "traefik.backend=bettor-league-landing"
+      - "traefik.docker.network=bettor-league-network"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:bettorleague.ovh"
+      - "traefik.port=80"
+
 networks:
-  default:
-    external:
-      name: bettor-league-network
+  bettor-league-network:
+    external: true
